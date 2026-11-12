@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { fetchStream } from "../../actions";
 import flv from "flv.js";
 
+const MEDIA_URL = process.env.REACT_APP_MEDIA_URL || "http://localhost:8000";
+
 class StreamShow extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class StreamShow extends React.Component {
     const { id } = this.props.match.params;
     this.player = flv.createPlayer({
       type: "flv",
-      url: `http://localhost:8000//${id}.flv`
+      url: `${MEDIA_URL}//${id}.flv`
     });
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();
